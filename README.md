@@ -4,14 +4,14 @@
 
 ### Deep Learning for Computer Vision
 
-从图像分类与线性模型出发，逐步理解神经网络、反向传播、优化方法、卷积神经网络和序列建模。
+从图像分类与线性模型出发，逐步理解神经网络、反向传播、优化方法、卷积神经网络、序列建模与现代视觉任务。
 
 [![Course](https://img.shields.io/badge/Stanford-CS231n-8C1515?style=for-the-badge)](https://cs231n.stanford.edu/)
 [![Notes](https://img.shields.io/badge/Notes-中文-2ea44f?style=for-the-badge)](#笔记目录)
 [![Markdown](https://img.shields.io/badge/Format-Markdown-000000?style=for-the-badge&logo=markdown)](https://www.markdownguide.org/)
 [![Status](https://img.shields.io/badge/Status-持续更新-blue?style=for-the-badge)](#学习进度)
 
-[开始阅读](#笔记目录) · [学习路线](#学习路线) · [课程资源](#参考资料)
+[开始阅读](#笔记目录) · [学习路线](#学习路线) · [代码实践](必会代码部分.md) · [课程资源](#参考资料)
 
 </div>
 
@@ -19,7 +19,7 @@
 
 ## 关于本仓库
 
-本仓库记录我学习 Stanford **CS231n: Deep Learning for Computer Vision** 时对核心知识的理解与归纳，重点梳理公式背后的直觉、不同方法之间的联系，以及训练神经网络时常见的实践问题。
+本仓库记录我学习 Stanford **CS231n: Deep Learning for Computer Vision** 时对核心知识的理解与归纳，重点梳理公式背后的直觉、不同方法之间的联系，以及训练神经网络时常见的实践问题。内容涵盖基础分类、CNN 与 RNN，也延伸到语义分割、目标检测和模型可视化。
 
 笔记采用中文编写，适合以下场景：
 
@@ -44,9 +44,12 @@ flowchart LR
     G --> H[卷积神经网络]
     H --> I[CNN 架构与训练]
     I --> J[循环神经网络与 LSTM]
+    I --> K[语义分割]
+    K --> L[目标检测与实例分割]
+    L --> M[模型可视化与解释]
 ```
 
-这条路线从“图像如何被计算机表示”开始，先建立分类问题的基本框架，再逐步进入可学习模型、梯度优化、深度卷积网络与序列建模。
+这条路线从“图像如何被计算机表示”开始，先建立分类问题的基本框架，再逐步进入可学习模型、梯度优化与深度卷积网络。掌握 CNN 后，可以按需继续学习序列建模，或进入分割、检测和模型解释等视觉专题。
 
 ## 笔记目录
 
@@ -59,6 +62,10 @@ flowchart LR
 | 05 | [CNN 卷积神经网络](CNN卷积神经网络.md) | 卷积、步幅、填充、池化、感受野 | ✅ |
 | 06 | [CNN 搭建与训练](CNN搭建与训练.md) | 归一化、Dropout、ResNet、初始化、训练技巧 | ✅ |
 | 07 | [循环神经网络 RNN](循环神经网络RNN.md) | Vanilla RNN、Embedding、BPTT、梯度裁剪、LSTM | ✅ |
+| 08 | [目标检测、图像分割与模型可视化](目标检测，图像分割和模型可视化.md) | FCN、U-Net、R-CNN 系列、YOLO、DETR、Mask R-CNN、Grad-CAM | ✅ |
+| 09 | [必会代码：两层神经网络](必会代码部分.md) | NumPy 前向传播、Softmax、L2 正则化、反向传播与训练循环 | ✅ |
+
+> 建议初学者按 01 → 06 的顺序阅读；07、08 是两个可独立选择的进阶方向，09 适合在学完反向传播后配合动手实现。
 
 ## 核心知识框架
 
@@ -97,6 +104,13 @@ RNN 通过循环状态保存历史信息，并在不同时间步共享参数；B
 
 </details>
 
+<details>
+<summary><strong>6. 从图像分类到像素级与实例级理解</strong></summary>
+
+语义分割为每个像素预测类别，目标检测同时定位并识别多个物体，实例分割则进一步输出每个物体的像素级掩码。Grad-CAM 等可视化方法可以帮助分析模型做出判断时关注了哪些区域。
+
+</details>
+
 ## 如何使用
 
 ### 在线阅读
@@ -123,7 +137,11 @@ cs231n-notes/
 ├── 正则化与优化.md
 ├── CNN卷积神经网络.md
 ├── CNN搭建与训练.md
-└── 循环神经网络RNN.md
+├── 循环神经网络RNN.md
+├── 目标检测，图像分割和模型可视化.md
+├── 目标检测，图像分割和模型可视化/
+│   └── slide*.png
+└── 必会代码部分.md
 ```
 
 ## 学习进度
@@ -136,14 +154,14 @@ cs231n-notes/
 - [x] 正则化与常见优化器
 - [x] CNN 原理、经典架构与训练方法
 - [x] RNN、BPTT、梯度裁剪与 LSTM
+- [x] 语义分割、目标检测与实例分割
+- [x] 模型可视化：Saliency Map、CAM 与 Grad-CAM
+- [x] NumPy 实现两层神经网络的前向传播、反向传播与训练循环
 
 ### 待更新笔记
 
 - [ ] 注意力机制与 Transformer
 - [ ] Vision Transformer（ViT）
-- [ ] 目标检测：R-CNN、Fast/Faster R-CNN 与 YOLO
-- [ ] 图像分割：语义分割、实例分割与 Mask R-CNN
-- [ ] 可视化与模型解释：特征图、显著性图与 Grad-CAM
 - [ ] 生成模型：Autoencoder、VAE、GAN 与 Diffusion
 - [ ] 自监督学习与对比学习
 - [ ] 视频理解与时序建模
